@@ -1,11 +1,13 @@
-import tkinter as tk
-import pulp
+import tkinter as tk             #para fazer interface
 import tkinter.ttk as ttk
 from tkinter import messagebox
-import networkx as nx
-import matplotlib.pyplot as plt
+import pulp                      #para lidar com o problema 
+import networkx as nx            #para gerar os grafos
+import matplotlib.pyplot as plt  #para criar graficos/janelas
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+# ----------------------------------------------------------------------------------
+# classe Grafo
 class GrafoResultados:
     def __init__(self, modelo, frame):
         self.modelo = modelo
@@ -59,6 +61,9 @@ class GrafoResultados:
         self.canvas = FigureCanvasTkAgg(fig, master=self.frame)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+# ------------------------------------------------------------------------------------
+# classe Interface
 
 class InterfaceUsuario:
     def __init__(self, root):
@@ -198,6 +203,8 @@ class InterfaceUsuario:
 
         self.grafo_resultados = GrafoResultados(self.modelo, self.frame_grafo)  # Atualiza o gráfico
 
+# -----------------------------------------------------------------------------------------------------------
+# classe que modela o problema
 class ModeloDesignacao:
     def __init__(self, num_dias, num_agentes, min_pessoas_dia, max_pessoas_dia, min_dias_trabalho, max_dias_trabalho, custos):
         self.num_dias = num_dias
